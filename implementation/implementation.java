@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class Scratch {
@@ -30,6 +31,9 @@ class Scratch {
                         )
                 ).entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
         System.out.println("rrrr" + result);
+
+        bonAppetit(Arrays.asList(3, 10, 2, 9), 1, 12);
+        bonAppetit(Arrays.asList(3, 10, 2, 9), 1, 7);
 
     }
 
@@ -75,4 +79,16 @@ class Scratch {
         }
         return result;
     }
+
+    static void bonAppetit(List<Integer> bill, int k, int b) {
+        int sum = IntStream.range(0, bill.size()).filter(i -> i != k).map(bill::get).reduce(0, Integer::sum);
+        if (sum / 2 == b) {
+            System.out.println("Bon Appetit");
+        } else {
+            System.out.println(b - (sum / 2));
+        }
+
+
+    }
+
 }
