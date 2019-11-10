@@ -1,5 +1,6 @@
 import com.sun.tools.javac.util.ArrayUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,8 @@ class Scratch {
 
         bonAppetit(Arrays.asList(3, 10, 2, 9), 1, 12);
         bonAppetit(Arrays.asList(3, 10, 2, 9), 1, 7);
+
+        System.out.println(getTotalX(Arrays.asList(2, 6), Arrays.asList(24,36)));
 
     }
 
@@ -91,4 +94,54 @@ class Scratch {
 
     }
 
+    public static int getTotalX(List<Integer> a, List<Integer> b) {
+//        List<Integer> divs = findDividers(a,false);
+        List<Integer> divs2 = findDividers(a,false);
+                List<Integer> divs = findDividers(a,true);
+
+        return 0;
+//        return (int) findDividers(b,true).stream().filter(i -> !divs.contains(i)).count();
+    }
+
+    private static boolean isFactor(int i, int j) {
+        return i%j==0;
+    }
+
+    private static List<Integer> findDividers(List<Integer> a, boolean reverse) {
+        List<Integer> ll = new ArrayList<>();
+        a.sort(Integer::compareTo);
+        Integer maxValue = a.get(a.size() - 1);
+
+
+
+        for (int i = maxValue; i > 0; i--) {
+            boolean isF=false;
+            int divider = i;
+//            boolean isCommonDivider = false;
+            if (!reverse) {
+                isF = a.stream().filter(j->isFactor(j, divider)).count()==a.size();
+            } else {
+
+//                j->j % checked!=0
+                 isF = a.stream().filter(j->isFactor(divider, j)).count()==a.size();
+//
+//                for (int val : a) {
+//                    System.out.println(String.format("val=%d, i=%d",val,i));
+//                    if (val % i == 0) {
+//                        System.out.println(String.format("match val=%d, i=%d",val,i));
+//                        isCommonDivider = true;
+//                    } else
+//                        isCommonDivider = false;
+//                }
+            }
+
+
+            if (isF) {
+                ll.add(i);
+            }
+
+        }
+        System.out.println("ll=" + ll.toString());
+        return ll;
+    }
 }
