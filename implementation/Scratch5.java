@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,4 +19,6 @@ public class Scratch5 {
         }
         return Arrays.stream(pairs).boxed().filter(i->i!=0).map(i->i/2).reduce(0, Integer::sum);
     }
+
 }
+
