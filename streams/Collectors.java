@@ -12,6 +12,9 @@ public class Collectors {
         Optional<String> mostCalorieDish =
                 Stream.of("Curry", "Steak")
                         .collect(maxBy(dishCaloriesComparator));
+
+        Map<Currency, List<Transaction>> transactionsByCurrencies =
+                transactions.stream().collect(groupingBy(Transaction::getCurrency));
     }
 
 }
