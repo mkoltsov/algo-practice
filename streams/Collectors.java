@@ -153,6 +153,30 @@ public class Collectors {
                                 partitioningBy(candidate -> isPrime(candidate)));
             }
         }
+//        Custom collector
+//        public Map<Boolean, List<Integer>> partitionPrimesWithCustomCollector
+//        (int n) {
+//            IntStream.rangeClosed(2, n).boxed()
+//                    .collect(
+//                            () -> new HashMap<Boolean, List<Integer>>() {{    1
+//                                put(true, new ArrayList<Integer>());
+//                                put(false, new ArrayList<Integer>());
+//                            }},
+//                            (acc, candidate) -> {                                     2
+//                                acc.get( isPrime(acc.get(true), candidate) )
+//                                        .add(candidate);
+//                            },
+//                            (map1, map2) -> {                                        3
+//                                map1.get(true).addAll(map2.get(true));
+//                                map1.get(false).addAll(map2.get(false));
+//                            });
+//        }
+//        1 Supplier
+//        2 Accumulator
+//        3 Combiner
+
     }
+
+
 
 }
