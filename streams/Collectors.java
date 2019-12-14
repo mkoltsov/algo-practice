@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
@@ -139,6 +140,19 @@ public class Collectors {
 
         menu.stream().collect(partitioningBy(Dish::isVegetarian,
                 counting()));
+
+
+        public boolean isPrime(int candidate) {
+            int candidateRoot = (int) Math.sqrt((double) candidate);
+            return IntStream.rangeClosed(2, candidateRoot)
+                    .noneMatch(i -> candidate % i == 0);
+
+            public Map<Boolean, List<Integer>> partitionPrimes(int n) {
+                return IntStream.rangeClosed(2, n).boxed()
+                        .collect(
+                                partitioningBy(candidate -> isPrime(candidate)));
+            }
+        }
     }
 
 }
