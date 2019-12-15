@@ -90,6 +90,55 @@ public class Collectors {
                         .collect(groupingBy(Dish::getType,
                                 flatMapping(dish -> dishTags.get( dish.getName() ).stream(),
                                         toSet())));
+//multilevel grouping
+        Map<Dish.Type, Map<CaloricLevel, List<Dish>>> dishesByTypeCaloricLevel =
+                menu.stream().collect(
+                        groupingBy(Dish::getType,
+                                groupingBy(dish -> {
+                                    if (dish.getCalories() <= 400) return CaloricLevel.DIET;
+                                    else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+                                    else return CaloricLevel.FAT;
+                                } )
+                        )
+                );
+
+        Map<Dish.Type, Long> typesCount = menu.stream().collect(
+                groupingBy(Dish::getType, counting()));
+
+
+        Map<Dish.Type, Optional<Dish>> mostCaloricByType =
+                menu.stream()
+                        .collect(groupingBy(Dish::getType,
+                                maxBy(comparingInt(Dish::getCalories))));
+
+
+        Map<Dish.Type, Dish> mostCaloricByType =
+                menu.stream()
+                        .collect(groupingBy(Dish::getType,
+                                collectingAndThen(
+                                        maxBy(comparingInt(Dish::getCalories)),
+                                        Optional::get)));
+
+
+        Map<Dish.Type, Dish> mostCaloricByType =
+                menu.stream()
+                        .collect(groupingBy(Dish::getType,
+                                collectingAndThen(
+                                        maxBy(comparingInt(Dish::getCalories)),
+                                        Optional::get)));
+
+//        PARTITIONING
+
+        Map<Boolean, List<Dish>> partitionedMenu =
+                menu.stream().collect(partitioningBy(Dish::isVegetarian));
+
+        Map<Boolean, Map<Dish.Type, List<Dish>>> vegetarianDishesByType =
+                menu.stream().collect(
+                        partitioningBy(Dish::isVegetarian,
+                                groupingBy(Dish::getType)));
+
+        menu.stream().collect(partitioningBy(Dish::isVegetarian,
+                counting()));
     }
 
 }
