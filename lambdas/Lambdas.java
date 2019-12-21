@@ -51,6 +51,50 @@ public class Lambdas {
             if(p != null) return p.get();
             throw new IllegalArgumentException("No such product " + name);
         }
+
+//testing
+
+        public class Point {
+            public final static Comparator<Point> compareByXAndThenY =
+                    comparing(Point::getX).thenComparing(Point::getY);
+    ...
+        }
+
+        @Test
+        public void testComparingTwoPoints() throws Exception {
+            Point p1 = new Point(10, 15);
+            Point p2 = new Point(10, 20);
+            int result = Point.compareByXAndThenY.compare(p1 , p2);
+            assertTrue(result < 0);
+        }
+
+        public static List<Point> moveAllPointsRightBy(List<Point> points, int x) {
+            return points.stream()
+                    .map(p -> new Point(p.getX() + x, p.getY()))
+                    .collect(toList());
+        }
+
+        @Test
+        public void testMoveAllPointsRightBy() throws Exception {
+            List<Point> points =
+                    Arrays.asList(new Point(5, 5), new Point(10, 5));
+            List<Point> expectedPoints =
+                    Arrays.asList(new Point(15, 5), new Point(20, 5));
+            List<Point> newPoints = Point.moveAllPointsRightBy(points, 10);
+            assertEquals(expectedPoints, newPoints);
+        }
+
+//        logging
+        List<Integer> result =
+                numbers.stream()
+                        .peek(x -> System.out.println("from stream: " + x))    1
+                .map(x -> x + 17)
+                .peek(x -> System.out.println("after map: " + x))      2
+                .filter(x -> x % 2 == 0)
+                .peek(x -> System.out.println("after filter: " + x))   3
+                .limit(3)
+                .peek(x -> System.out.println("after limit: " + x))    4
+                .collect(toList());
     }
 
 }
