@@ -16,14 +16,17 @@ public class CutTheSticks {
         List<Integer> l =new ArrayList<>();
         l.add(arr.length);
         int toAdd=arr.length;
+        System.out.println(Arrays.toString(arr));
         for(int i=1;i<arr.length;i++){
             if(arr[i]==min){
                 toRemove++;
+                System.out.println("tr"+toRemove);
             }
             if(arr[i]>min){
                 min=arr[i];
                 toAdd-=toRemove;
                 toRemove=1;
+                System.out.println(String.format("min=%d,toAdd=%d, toRemove=%d ", min, toAdd,toRemove));
                 l.add(toAdd);
             }
         }
