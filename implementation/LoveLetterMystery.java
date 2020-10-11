@@ -1,2 +1,10 @@
-package PACKAGE_NAME;public class LoveLetterMystery {
-}
+//public class LoveLetterMystery {
+//    public static void main(String[] args) {
+//
+//    }
+//
+//    static int theLoveLetterMystery(String s) {
+//
+//
+//    }
+//}
