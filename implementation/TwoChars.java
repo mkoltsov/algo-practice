@@ -17,9 +17,10 @@ public class TwoChars {
         {
             for(int j = i+1; j < n; j++)
             {
-                String temp = "[^" + (char)dist[i] + (char)dist[j] + "]";
-                String f = s.replaceAll(temp,"");
+                String temp = "[^" + (char)dist[i] + (char)dist[j] +    "]";
 
+                String f = s.replaceAll(temp,"");
+                System.out.printf("%s %c %c  %s %n", temp, (char)dist[i], (char)dist[j], f);
                 for(k = 0; k < f.length()-1; k++)
                 {
                     if(f.charAt(k) == f.charAt(k+1))
