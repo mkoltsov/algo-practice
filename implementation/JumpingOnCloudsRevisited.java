@@ -12,7 +12,6 @@ public class JumpingOnCloudsRevisited {
             if (i == 0 & iter > 0) {
                 break;
             }
-//        System.out.println(i);
             iter++;
             initialEnergy -= 1;
 
