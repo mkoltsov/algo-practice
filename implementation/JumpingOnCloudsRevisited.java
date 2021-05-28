@@ -9,13 +9,13 @@ public class JumpingOnCloudsRevisited {
     int initialEnergy = 100;
     int iter=0;
     for (int i=0;i<c.length;i=(i+k)%c.length){
-        if (i>0) {
+//        if (i>0) {
             if (c[i] == 1) {
                 initialEnergy -= 2;
             } else {
                 initialEnergy -= 1;
             }
-        }
+//        }
         if (i==0 & iter>0){
             break;
         }
