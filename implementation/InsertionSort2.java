@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class InsertionSort2 {
     public static void main(String[] args) {
         insertionSort2(6, new int[]{1, 4, 3, 5, 6, 2});
+//        insertionSort2(6, new int[]{1, 3, 4, 5, 6, 2});
     }
 
     // Complete the insertionSort2 function below.
@@ -15,9 +16,13 @@ public class InsertionSort2 {
         int numberOfShifts= Math.abs(positionDestination-positionSource);
         int shift=0;
         System.out.printf("%d %d %n", positionDestination, positionSource);
+        int prev=arr[positionDestination+shift];
         while (numberOfShifts>0){
+            System.out.println(11111);
             System.out.printf("%d %d %d %d %n", positionDestination, positionSource, shift, numberOfShifts);
-            arr[positionDestination+(shift+1)]=arr[positionDestination+shift];
+            prev = arr[positionDestination+(shift+1)];
+            arr[positionDestination+(shift+1)]=prev;
+            System.out.println(222+Arrays.toString(arr));
             shift++;
             numberOfShifts--;
         }
@@ -36,11 +41,11 @@ public class InsertionSort2 {
 
         for (int i = 0; i < arr.length ; i++) {
             int curr =arr[i];
-            for (int j = i; j > 0; j--) {
+            for (int j = 0; j < i; j++) {
+                System.out.printf("indi=%d indj=%d val1=%d val2=%d %n", i, j, curr, arr[j]);
                 if (curr<arr[j]){
-                    System.out.println(Arrays.toString(shiftRight(arr,i,j)));
-                    System.out.println(Arrays.toString(arr));
-
+                    System.out.println(444+Arrays.toString(shiftRight(arr,i,j)));
+//                    System.out.println(333+Arrays.toString(arr));
                 }
 //                if (curr > arr[j - 1]) {
 ////                    selfInserted=true;
