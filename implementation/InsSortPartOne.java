@@ -13,7 +13,6 @@ public class InsSortPartOne {
                 int temp = arr.get(i);
                 arr.set(i, arr.get(i-1));
                 arr.set(i-1, temp);
-                System.out.println(arr);
             }
 
         }
